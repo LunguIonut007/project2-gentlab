@@ -1,12 +1,11 @@
 {
-  "product": [
-    {
+  "product": [{
+      "id": 1,
       "name": "Ursulet nou",
       "quantity": 12,
       "price": 20,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      "supplierId": 1,
-      "id": 1
+      "supplierId": 1
     },
     {
       "id": 2,
@@ -95,21 +94,12 @@
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       "supplierId": 3,
       "id": 12
-    },
-    {
-      "name": "Ciocolata Poiana",
-      "quantity": 1,
-      "price": 15,
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      "supplierId": 3,
-      "id": 13
     }
   ],
-  "supplier": [
-    {
+  "supplier": [{
+     "id": 1,
       "name": "Gentlab Onesti Srl",
-      "address": "Str. Curmaturii nr 145",
-      "id": 1
+      "address": "Str. Curmaturii nr 145"
     },
     {
       "id": 2,
@@ -157,7 +147,7 @@
       "address": "Str. Marasesti nr 53"
     },
     {
-      "name": "New old Srl",
+      "name": "New FiFa Srl",
       "address": "Str. I.L. Caragiale nr 34",
       "id": 11
     },
@@ -185,11 +175,6 @@
       "name": "New FiFa Srl",
       "address": "Str. I.L. Caragiale nr 34",
       "id": 16
-    },
-    {
-      "name": "Enel Srl",
-      "address": "Str. Vrancea nr 11",
-      "id": 17
     }
   ]
 }

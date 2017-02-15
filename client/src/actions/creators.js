@@ -1,7 +1,7 @@
 import Types from './types';
 
 const requestSuppliers = () => ({ type: Types.SUPPLIERS_REQUEST });
-const receiveSuppliers = suppliers => ({ type: Types.SUPPLIERS_REQUEST, suppliers });
+const receiveSuppliers = suppliers => ({ type: Types.SUPPLIERS_RECEIVE, suppliers });
 
 const requestLast5Suppliers = () => ({ type: Types.SUPPLIERS_LAST5_REQUEST });
 const receiveLast5Suppliers = last5Suppliers => ({ type: Types.SUPPLIERS_LAST5_RECEIVE, last5Suppliers });

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Menu } from 'semantic-ui-react';
+import { Link } from 'react-router';
 
 export default class MenuComponent extends Component {
   constructor(props) {
@@ -14,14 +15,15 @@ export default class MenuComponent extends Component {
   render() {
     const activeItem = this.props.pathname;
     const menuItems = this.props.menuItems.map((item, index) => (
-      <Menu.Item
-        key={index}
-        name={item.name}
-        active={activeItem === item.pathname}
-        onClick={this.handleItemClick}
-        >
-        {item.name.toUpperCase()}
-      </Menu.Item>));
+      <Link to={item.pathname} key={index}>
+        <Menu.Item
+          name={item.name}
+          active={activeItem === item.pathname}
+          >
+          {item.name.toUpperCase()}
+        </Menu.Item>
+      </Link>
+      ));
     return (
       <Menu>
         {menuItems}

@@ -8,7 +8,7 @@ export function* getSuppliers(api) {
     // check if response is success
   if (response.ok) {
       // dispatch successful receiving children
-    yield put(Actions.receiveSuppliers(response.data.data));
+    yield put(Actions.receiveSuppliers(response.data));
   } else {
     // dispatch failure
     console.log('Error');
@@ -21,7 +21,7 @@ export function* getLast5Suppliers(api) {
     // check if response is success
   if (response.ok) {
       // dispatch successful receiving children
-    yield put(Actions.receiveLast5Suppliers(response.data.data));
+    yield put(Actions.receiveLast5Suppliers(response.data));
   } else {
     // dispatch failure
     console.log('Error');
@@ -35,7 +35,7 @@ export function* addSuppliers(api, action) {
     // check if response is success
   if (response.ok) {
       // dispatch successful receiving children
-    yield put(Actions.receiveAddSuppliers(response.data.data));
+    yield put(Actions.receiveAddSuppliers(response.data));
   } else {
     // dispatch failure
     console.log('Error');

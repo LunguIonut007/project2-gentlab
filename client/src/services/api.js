@@ -25,7 +25,7 @@ const create = (baseURL = 'http://localhost:3000') => {
 
   // Get last 5 suppliers
   // http://localhost:3000/supplier?_sort=views&_order=DESC&_limit=5
-  const getlast5Suppliers = () => api.get('/supplier?_sort=views&_order=DESC&_limit=5');
+  const getLast5Suppliers = () => api.get('/supplier?_sort=views&_order=DESC&_limit=5');
 
   // Add supplier
   // http://localhost:3000/supplier
@@ -55,7 +55,7 @@ const create = (baseURL = 'http://localhost:3000') => {
   return {
     // a list of the API functions from step 2
     getAllSuppliers,
-    getlast5Suppliers,
+    getLast5Suppliers,
     addSupplier,
     updateSupplier,
     deleteSupplier,

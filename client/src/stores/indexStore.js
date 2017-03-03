@@ -2,8 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import reducers from '../reducers';
-import mySaga from './../sagas';
+import reducers from '../reducers/indexReducer';
+import mySaga from './../sagas/IndexSaga';
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -13,9 +13,9 @@ function reduxStore(initialState) {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
+    module.hot.accept('../reducers/indexReducer', () => {
       // We need to require for hot reloading to work properly.
-      const nextReducer = require('../reducers');  // eslint-disable-line global-require
+      const nextReducer = require('../reducers/indexReducer.js');  // eslint-disable-line global-require
 
       store.replaceReducer(nextReducer);
     });

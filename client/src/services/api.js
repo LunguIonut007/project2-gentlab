@@ -2,7 +2,7 @@
 import apisauce from 'apisauce';
 
 // our "constructor"
-const create = (baseURL = 'http://localhost:3000') => {
+const create = (baseURL = 'http://localhost:8080/api') => {
   // ------
   // STEP 1
   // ------
@@ -19,25 +19,25 @@ const create = (baseURL = 'http://localhost:3000') => {
     timeout: 10240
   });
 
-  // Get all suppliers
-  // http://localhost:3000/supplier
-  const getAllSuppliers = () => api.get('/supplier');
+  const getAllSuppliers = () => api.get('/suppliers');
 
-  // Get last 5 suppliers
-  // http://localhost:3000/supplier?_sort=views&_order=DESC&_limit=5
-  const getLast5Suppliers = () => api.get('/supplier?_sort=views&_order=DESC&_limit=5');
+  const getAllProducts = () => api.get('/products');
 
-  // Add supplier
-  // http://localhost:3000/supplier
-  const addSupplier = newSupplier => api.post('/supplier', newSupplier);
+  const getLast5Suppliers = () => api.get('/suppliers/getLastSuppliers?number=5');
 
-  // Update supplier
-  // http://localhost:3000/supplier
-  const updateSupplier = (newSupplier, supplierId) => api.put(`/supplier/' ${supplierId}`, newSupplier);
+  const getLast5Products = () => api.get('/products/getLastProducts?number=5');
 
-  // Delete supplier
-  // http://localhost:3000/supplier
-  const deleteSupplier = supplierId => api.delete(`/supplier/' ${supplierId}`);
+  const addSupplier = newSupplier => api.post('/suppliers/add', newSupplier);
+
+  const addProduct = newProduct => api.post('/products/add', newProduct);
+
+  const editSupplier = (supplierId, newSupplier) => api.put(`/suppliers/${supplierId}`, newSupplier);
+
+  const editProduct = (productId, newProduct) => api.put(`/products/${productId}`, newProduct);
+
+  const deleteSupplier = supplierId => api.delete(`/suppliers/delete/${supplierId}`);
+
+  const deleteProduct = productId => api.delete(`/products/delete/${productId}`);
 
   //
   // ------
@@ -57,8 +57,13 @@ const create = (baseURL = 'http://localhost:3000') => {
     getAllSuppliers,
     getLast5Suppliers,
     addSupplier,
-    updateSupplier,
+    editSupplier,
     deleteSupplier,
+    getAllProducts,
+    getLast5Products,
+    addProduct,
+    editProduct,
+    deleteProduct
   };
 };
 

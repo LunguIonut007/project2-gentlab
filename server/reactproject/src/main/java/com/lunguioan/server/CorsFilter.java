@@ -9,6 +9,7 @@ import java.io.IOException;
 /**
  * Note this is a very simple CORS filter that is wide open.
  * This would need to be locked down.
+ * It's wide open so it can be used with postman
  */
 @Component
 public class CorsFilter implements Filter {

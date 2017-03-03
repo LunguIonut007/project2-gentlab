@@ -3,6 +3,7 @@ package com.lunguioan.server.service.impl;
 import com.lunguioan.server.dto.SupplierDto;
 import com.lunguioan.server.model.Supplier;
 import com.lunguioan.server.repository.SupplierRepository;
+import com.lunguioan.server.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,19 @@ import java.util.stream.Collectors;
 
 /**
  * Created by Ionut on 2/14/17.
+ * the service uses Java 8 stream to rapidly convert from objects to dtoObjects
+ * example:
+ * the suppliers.stream().map(SupplierDto::new).collect(Collectors.toList()); is equal to
+ *
+ * List<SupplierDto> supplierDtoList = new ArrayList<>();
+ * for for(Supplier supplier : suppliers) {
+ *     supplierDtoList.add(new SupplierDto(supplier));
+ * }
+ *
+ * for more information search Java 8 streams and method reference
  */
 @Service
-public class SupplierServiceImpl implements com.lunguioan.server.service.SupplierService {
+public class SupplierServiceImpl implements SupplierService {
 
     @Autowired
     private SupplierRepository supplierRepository;

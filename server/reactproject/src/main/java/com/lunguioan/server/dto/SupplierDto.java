@@ -1,12 +1,22 @@
 package com.lunguioan.server.dto;
 
 import com.lunguioan.server.model.Supplier;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Ionut on 2/21/17.
+ * Data transfer object for supplier, it contains all the information from the supplier object
  */
 public class SupplierDto {
+
+    @NotNull
+    @Min(0)
     private int id;
+
+    @NotEmpty
     private String name;
     private String address;
 
@@ -17,8 +27,10 @@ public class SupplierDto {
     }
 
     public SupplierDto() {
+        /* left blank because spring needs a default constructor to use reflection */
     }
 
+    //it puts the supplierDto field values in the supplier object;
     public Supplier resolve(Supplier supplier) {
         supplier.setName(this.name);
         supplier.setAddress(this.address);

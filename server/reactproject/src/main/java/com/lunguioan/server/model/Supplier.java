@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * Created by Ionut on 2/11/17.
+ * supplier object that maps SUPPLIER table
  */
 
 @Entity

@@ -6,10 +6,12 @@ import com.lunguioan.server.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
  * Created by Ionut on 2/21/17.
+ * Spring controller for handling CRUD mapping for Supplier object
  */
 
 @RestController
@@ -25,20 +27,21 @@ public class SupplierController {
     }
 
     @GetMapping("/{supplierId}")
-    public SupplierDto getSupplier(@PathVariable int supplierId) {
+    public SupplierDto getSupplierById(@PathVariable int supplierId) {
         return supplierService.getSupplier(supplierId);
     }
 
     @PutMapping("/{supplierId}")
-    public SupplierDto editSupplier(@PathVariable("supplierId")int supplierId, @RequestBody SupplierDto supplierDto) {
+    public SupplierDto editSupplier(@PathVariable("supplierId")int supplierId, @RequestBody @Valid SupplierDto supplierDto) {
         return supplierService.editSupplier(supplierId,supplierDto);
     }
 
     @PostMapping("/add")
-    public void createSupplier(@RequestBody SupplierDto supplierDto) {
+    public void createSupplier(@RequestBody @Valid SupplierDto supplierDto) {
         supplierService.saveSupplier(supplierDto.resolve(new Supplier()));
     }
 
+    //gets last n suppliers; if the number is not specified in query, default to 5
     @GetMapping("/getLastSuppliers")
     public List<SupplierDto> getLastSuppliers(@RequestParam(value = "number",defaultValue = "5")int numberOfSuppliers) {
         return supplierService.getLastNSuppliers(numberOfSuppliers);

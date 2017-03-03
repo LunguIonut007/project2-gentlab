@@ -2,16 +2,29 @@ package com.lunguioan.server.dto;
 
 import com.lunguioan.server.model.Product;
 import com.lunguioan.server.model.Supplier;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Ionut on 2/21/17.
+ * Data transfer object for product, it contains all the information from the product object
  */
 public class ProductDto {
 
+    @NotNull
+    @Min(0)
     private int id;
+
+    @NotEmpty
     private String name;
     private String description;
+
+    @NotNull
+    @Min(0)
     private int quantity;
+
     private SupplierLightDto supplierLightDto;
 
     public ProductDto(Product product) {
@@ -23,8 +36,12 @@ public class ProductDto {
     }
 
     public ProductDto() {
+        /* left blank because spring needs a default constructor to use reflection */
     }
 
+    //it puts the productDto field values in the product object;
+    //the supplier object is passed (and calculated based by the supplierLightDto id) because we do not want the productDto
+    //to be aware of the services/repositories
     public Product resolve(Product product, Supplier supplier){
         product.setName(this.name);
         product.setQuantity(this.quantity);

@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 /**
  * Created by Ionut on 2/11/17.
+ * product object that maps PRODUCT table
  */
 
 @Entity

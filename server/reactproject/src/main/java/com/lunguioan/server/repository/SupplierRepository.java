@@ -15,9 +15,11 @@ import java.util.List;
 @Repository
 public interface SupplierRepository extends PagingAndSortingRepository<Supplier,Integer> {
 
+    //select all objects from the SUPPLIER table
     @Query("from Supplier")
     List<Supplier> getAllSuppliers();
 
+    //orders the table descending and sends the top n values
     @Query("from Supplier supplier order by supplier.id desc")
     List<Supplier> getLastNSuppliers(Pageable pageable);
 }

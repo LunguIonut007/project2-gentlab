@@ -5,6 +5,7 @@ import com.lunguioan.server.model.Product;
 import com.lunguioan.server.model.Supplier;
 import com.lunguioan.server.repository.ProductRepository;
 import com.lunguioan.server.repository.SupplierRepository;
+import com.lunguioan.server.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,19 @@ import java.util.stream.Collectors;
 
 /**
  * Created by Ionut on 2/14/17.
+ * the service uses Java 8 stream to rapidly convert from objects to dtoObjects
+ * example:
+ * the products.stream().map(ProductDto::new).collect(Collectors.toList()); is equal to
+ *
+ * List<ProductDto> productDtoList = new ArrayList<>();
+ * for for(Product product : products) {
+ *     productDtoList.add(new ProductDtoList(product));
+ * }
+ *
+ * for more information search Java 8 streams and method reference
  */
-
 @Service
-public class ProductServiceImpl implements com.lunguioan.server.service.ProductService {
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;

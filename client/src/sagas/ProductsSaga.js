@@ -6,7 +6,7 @@ export function* getProducts(api) {
   const response = yield call(api.getAllProducts);
 
   if (response.ok) {
-    yield put(Actions.recieveProducts(response.data));
+    yield put(Actions.receiveProducts(response.data));
 
   } else {
     console.log('Error');

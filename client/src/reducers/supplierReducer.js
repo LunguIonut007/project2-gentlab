@@ -15,7 +15,7 @@ const ACTION_HANDLERS = {
   [Types.SUPPLIERS_REQUEST]: request,
   [Types.SUPPLIERS_RECEIVE]: receive,
   [Types.SUPPLIER_ADD_REQUEST]: saveRequest,
-  [Types.SUPPLIER_ADD_RECIEVE]: saveReceive
+  [Types.SUPPLIER_ADD_RECEIVE]: saveReceive
 };
 
 export default createReducer(INITIAL_STATE, ACTION_HANDLERS);

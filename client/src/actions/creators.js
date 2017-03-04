@@ -4,7 +4,7 @@ const requestSuppliers = () => ({ type: Types.SUPPLIERS_REQUEST });
 const receiveSuppliers = suppliers => ({ type: Types.SUPPLIERS_RECEIVE, suppliers });
 
 const requestProducts = () => ({ type: Types.PRODUCTS_REQUEST });
-const recieveProducts = products => ({ type: Types.PRODUCTS_RECIEVE, products });
+const receiveProducts = products => ({ type: Types.PRODUCTS_RECEIVE, products });
 
 
 const requestLast5Suppliers = () => ({ type: Types.SUPPLIERS_LAST5_REQUEST });
@@ -48,7 +48,7 @@ export default {
   requestSuppliers,
   receiveSuppliers,
   requestProducts,
-  recieveProducts,
+  receiveProducts,
   requestLast5Suppliers,
   receiveLast5Suppliers,
   requestLast5Products,

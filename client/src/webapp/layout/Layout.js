@@ -44,12 +44,12 @@ class Layout extends React.Component {
 Layout.propTypes = {
   children: PropTypes.node,
   pathname: PropTypes.string,
-  loading: PropTypes.number
+  loading: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
   pathname: state.routing.locationBeforeTransitions.pathname,
-  loading: state.loader.loading
+  loading: state.loader.number
 });
 
 export default connect(mapStateToProps)(Layout);

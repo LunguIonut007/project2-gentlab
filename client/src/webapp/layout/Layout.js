@@ -29,6 +29,7 @@ class Layout extends React.Component {
 
   render() {
     const {loading} = this.props;
+    console.log(loading);
     return (
       <div>
         <Menu menuItems={this.state.menuItems} pathname={this.props.pathname}/>
@@ -44,12 +45,12 @@ class Layout extends React.Component {
 Layout.propTypes = {
   children: PropTypes.node,
   pathname: PropTypes.string,
-  loading: PropTypes.bool
+  loading: PropTypes.number
 };
 
 const mapStateToProps = state => ({
   pathname: state.routing.locationBeforeTransitions.pathname,
-  loading: state.loader.number
+  loading: state.loader.loading
 });
 
 export default connect(mapStateToProps)(Layout);

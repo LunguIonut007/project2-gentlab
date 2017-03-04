@@ -9,11 +9,13 @@ class SupplierModalComponent extends React.Component {
 
 
   componentWillMount() {
-    const {type, initialSupplierData, initialize} = this.props;
+    const {type, initialSupplierData, initialize, reset} = this.props;
     const header = type === 'add' ? 'Add supplier' : 'Edit supplier';
     const confirmButtonText = this.props.type === 'add' ? 'Save' : 'Edit';
     this.state = {header, confirmButtonText };
     initialize(initialSupplierData);
+   // this.props.validate(initialSupplierData);
+    reset(); // reset is here for forcing a new validation
   }
 
   onSubmit = (formData) => {
@@ -28,18 +30,20 @@ class SupplierModalComponent extends React.Component {
   };
 
   render() {
-    const { handleSubmit, closeModal, pristine } = this.props;
+    const { handleSubmit, closeModal, pristine, submitting } = this.props;
     return (
       <Modal open={this.props.isOpen} onClose={closeModal}>
         <Modal.Header>{this.state.header}</Modal.Header>
         <Modal.Content>
           <Form onSubmit={handleSubmit(this.onSubmit)}>
-            <Field name="name" label="Name" component={InputFormField} type="text"/>
-            <Field name="address" label="Address" component={InputFormField} type="text"/>
+            <Field name="name" label="Name" component={InputFormField} disabled={submitting} type="text"/>
+            <Field name="address" label="Address" component={InputFormField} disabled={submitting} type="text"/>
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button type="submit" onClick={handleSubmit(this.onSubmit)} disabled={pristine}> {this.state.confirmButtonText} </Button>
+          <Button
+            type="submit" onClick={handleSubmit(this.onSubmit)}
+            disabled={pristine || submitting}> {this.state.confirmButtonText} </Button>
           <Button onClick={this.props.closeModal}> Cancel </Button>
         </Modal.Actions>
       </Modal>
@@ -56,7 +60,9 @@ SupplierModalComponent.propTypes = {
   requestEditSupplier: PropTypes.func,
   id: PropTypes.number,
   initialize: PropTypes.func,
+  reset: PropTypes.func,
   pristine: PropTypes.bool,
+  submitting: PropTypes.bool,
   initialSupplierData: PropTypes.object
 };
 
@@ -77,6 +83,7 @@ const mapDispatchToProps = dispatch => ({
 const SupplierModalExport = connect(mapStateToProps, mapDispatchToProps)(SupplierModalComponent);
 
 function validate(values) {
+
   const {name, address} = values;
   const errors = {};
 

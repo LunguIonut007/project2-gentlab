@@ -11,7 +11,7 @@ class ProductModalComponent extends React.Component {
 
 
   componentWillMount() {
-    const {type, initialProductData, initialize, suppliers} = this.props;
+    const {type, initialProductData, initialize, suppliers, reset} = this.props;
 
     if (suppliers.length === 0) {
       this.props.requestSuppliers();
@@ -24,7 +24,7 @@ class ProductModalComponent extends React.Component {
     if (initialProductData != null) {
       const productData = {name: initialProductData.name, description: initialProductData.description, supplier: initialProductData.supplierLightDto.name, quantity: initialProductData.quantity };
       initialize(productData);
-
+      reset(); // reset is here for forcing a new validation
     }
     //
   }
@@ -57,21 +57,21 @@ class ProductModalComponent extends React.Component {
   render() {
 
     const options = this.getOptionsFromObject();
-    const { handleSubmit, closeModal, pristine } = this.props;
+    const { handleSubmit, closeModal, pristine, submitting } = this.props;
     return (
       <Modal open={this.props.isOpen} onClose={closeModal}>
         <Modal.Header>{this.state.header}</Modal.Header>
         <Modal.Content>
           <Form onSubmit={handleSubmit(this.onSubmit)}>
-            <Field name="name" label="Name" component={InputFormField} type="text"/>
-            <Field name="description" label="Description" component={InputFormField} type="text"/>
-            <Field name="quantity" label="Quantity" component={InputFormField} type="number"/>
-            <Field name="supplier" label="Supplier" component={DropDownField} options={options}/>
+            <Field name="name" label="Name" component={InputFormField} disabled={submitting} type="text"/>
+            <Field name="description" label="Description" component={InputFormField} disabled={submitting} type="text"/>
+            <Field name="quantity" label="Quantity" component={InputFormField} disabled={submitting} type="number"/>
+            <Field name="supplier" label="Supplier" component={DropDownField} disabled={submitting} options={options}/>
 
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button type="submit" onClick={handleSubmit(this.onSubmit)} disabled={pristine}> {this.state.confirmButtonText} </Button>
+          <Button type="submit" onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}> {this.state.confirmButtonText} </Button>
           <Button onClick={this.props.closeModal} > Cancel </Button>
         </Modal.Actions>
       </Modal>
@@ -89,6 +89,8 @@ ProductModalComponent.propTypes = {
   id: PropTypes.number,
   pristine: PropTypes.bool,
   initialize: PropTypes.func,
+  reset: PropTypes.func,
+  submitting: PropTypes.bool,
   requestSuppliers: PropTypes.func,
   suppliers: PropTypes.arrayOf(PropTypes.object),
   initialProductData: PropTypes.object

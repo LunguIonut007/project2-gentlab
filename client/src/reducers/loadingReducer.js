@@ -2,7 +2,7 @@ import { createReducer } from 'reduxsauce';
 
 import Types from './../actions/types';
 
-export const INITIAL_STATE = { loading: false};
+export const INITIAL_STATE = { loading: 0};
 
 // All request to the REST api should show a loading icon
 

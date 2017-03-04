@@ -10,16 +10,18 @@ export default class TableWithSearch extends React.Component {
     const options = this.props.columns.map((column, index) => (
       {key: index, text: column, value: column}
         ));
-
-    this.state = {searchData: '', options, searchColumns: []};
+    const defaultValue = options.length ? [options[0].value] : [];
+    this.state = {searchData: '', options, searchColumns: defaultValue};
   }
 
   getFilteredData() {
     const { data } = this.props;
     const {searchColumns, searchData} = this.state;
 
-    const verifyIfObjectMatch = (stringData, searchDataParam) =>
-        (stringData.toString().toLowerCase().includes(searchDataParam.toLowerCase()));
+    const verifyIfObjectMatch = (stringData, searchDataParam) => {
+      if (stringData == null) return false;
+      return stringData.toString().toLowerCase().includes(searchDataParam.toLowerCase());
+    };
 
     // if the search bar value is not empty, filter the data
     if (searchData.trim() !== '') {
@@ -38,6 +40,7 @@ export default class TableWithSearch extends React.Component {
   };
 
   render() {
+
     return (
       <div>
         <div className="divSome">
@@ -47,7 +50,7 @@ export default class TableWithSearch extends React.Component {
             type="text" icon="search" placeholder="Search..." size="tiny"/>
 
           <Dropdown
-            placeholder="Filter" onChange={this.handleColumnChange}
+            placeholder="Filter" onChange={this.handleColumnChange} defaultValue={this.state.searchColumns}
             multiple fluid selection options={this.state.options} />
         </div>
         <Table data={this.getFilteredData()} color={this.props.color} />

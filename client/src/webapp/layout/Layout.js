@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
-import {Dimmer, Loader} from 'semantic-ui-react';
+import { Loader} from 'semantic-ui-react';
 import Menu from './Menu';
 import ModalController from './ModalController';
 

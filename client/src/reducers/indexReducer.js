@@ -8,9 +8,11 @@ import SupplierLast5Reducer from './supplierLast5Reducer';
 import ProductReducer from './productReducer';
 import ModalReducer from './modalReducer';
 import ProductLast5Reducer from './productLast5Reducer';
+import LoaderReducer from './loadingReducer';
 
 const combined = combineReducers(
   {
+    loader: LoaderReducer,
     routing: routerReducer,
     suppliers: SupplierReducer,
     last5Suppliers: SupplierLast5Reducer,

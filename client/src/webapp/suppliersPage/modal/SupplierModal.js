@@ -34,7 +34,6 @@ class SupplierModalComponent extends React.Component {
         <Modal.Header>{this.state.header}</Modal.Header>
         <Modal.Content>
           <Form onSubmit={handleSubmit(this.onSubmit)}>
-            <label htmlFor="name">First Name</label>
             <Field name="name" label="Name" component={InputFormField} type="text"/>
             <Field name="address" label="Address" component={InputFormField} type="text"/>
           </Form>
@@ -57,6 +56,7 @@ SupplierModalComponent.propTypes = {
   requestEditSupplier: PropTypes.func,
   id: PropTypes.number,
   initialize: PropTypes.func,
+  pristine: PropTypes.bool,
   initialSupplierData: PropTypes.object
 };
 

@@ -3,25 +3,28 @@ import { Button, Confirm } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import Actions from './../../actions/creators';
 
-class DeleteModal extends Component {
+// ConfirmModal is an abstract component that confirms than a passed action takes place
+// confirmFunc = function to be invoked on confirmation
+
+class ConfirmModal extends Component {
 
   handleConfirm = () => {
-    this.props.deleteFunc();
-    this.props.close();
+    this.props.confirmFunc();
+    this.props.closeModal();
   };
 
   handleCancel = () => {
-    this.props.close();
+    this.props.closeModal();
   };
 
   render() {
-    const {header, isOpen} = this.props;
+    const {header, isOpen, confirmButtonName} = this.props;
     return (
       <div>
         <Button onClick={this.show}>Show</Button>
         <Confirm
           header={header}
-          confirmButton="Delete"
+          confirmButton={confirmButtonName}
           open={isOpen}
           onCancel={this.handleCancel}
           onConfirm={this.handleConfirm}
@@ -31,20 +34,20 @@ class DeleteModal extends Component {
   }
 }
 
-DeleteModal.propTypes = {
+ConfirmModal.propTypes = {
   header: PropTypes.string,
   isOpen: PropTypes.bool,
-  close: PropTypes.func,
-  deleteFunc: PropTypes.func.isRequired
+  closeModal: PropTypes.func,
+  confirmButtonName: PropTypes.string,
+  confirmFunc: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  isOpen: state.modal.isOpen,
-  id: state.modal.id
+  isOpen: state.modal.isOpen
 });
 
 const mapDispatchToProps = dispatch => ({
-  close: () => dispatch(Actions.closeModal())
+  closeModal: () => dispatch(Actions.closeModal())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteModal);
+export default connect(mapStateToProps, mapDispatchToProps)(ConfirmModal);

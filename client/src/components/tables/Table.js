@@ -6,6 +6,7 @@ class TableComponent extends React.Component {
 
   render() {
     const { data, title, color } = this.props;
+    // put object properties as table headers
     const headers = (data.length > 0 ? Object.getOwnPropertyNames(data[0]) : []);
 
     const tableHeaders = headers.map((header, indexHeader) => (

@@ -1,17 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import DeleteModal from './../../../components/modals/DeleteModal';
+import ConfirmModal from './../../../components/modals/ConfirmModal';
 import Actions from './../../../actions/creators';
+
+// Modal which apears when a user tries to delete a product
 
 class ProductDeleteModal extends Component {
 
   deleteProduct = () => {
-    this.props.deleteProduct(this.props.id);
+    const { id, deleteProduct } = this.props;
+    deleteProduct(id);
   };
 
   render() {
     return (
-      <DeleteModal header="Delete product" deleteFunc={this.deleteProduct}/>
+      <ConfirmModal confirmButtonName="Delete" header="Delete product" confirmFunc={this.deleteProduct}/>
     );
   }
 }

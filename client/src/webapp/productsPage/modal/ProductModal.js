@@ -87,7 +87,9 @@ ProductModalComponent.propTypes = {
   requestAddProduct: PropTypes.func,
   requestEditProduct: PropTypes.func,
   id: PropTypes.number,
+  pristine: PropTypes.bool,
   initialize: PropTypes.func,
+  requestSuppliers: PropTypes.func,
   suppliers: PropTypes.arrayOf(PropTypes.object),
   initialProductData: PropTypes.object
 };
@@ -113,7 +115,7 @@ const mapDispatchToProps = dispatch => ({
 const ProductModalExport = connect(mapStateToProps, mapDispatchToProps)(ProductModalComponent);
 
 function validate(values) {
-  const {name, quantity, description, supplier} = values;
+  const {name, quantity, supplier} = values;
   const errors = {};
 
   if (name == null || name.trim() === '') errors.name = 'Please enter a name!';

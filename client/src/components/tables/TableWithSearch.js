@@ -6,7 +6,7 @@ import './../../styles/main.css';
 export default class TableWithSearch extends React.Component {
 
   componentWillMount() {
-
+    // options = the criteria by which the table data can be sorted
     const options = this.props.columns.map((column, index) => (
       {key: index, text: column, value: column}
         ));
@@ -21,10 +21,11 @@ export default class TableWithSearch extends React.Component {
     const verifyIfObjectMatch = (stringData, searchDataParam) =>
         (stringData.toString().toLowerCase().includes(searchDataParam.toLowerCase()));
 
+    // if the search bar value is not empty, filter the data
     if (searchData.trim() !== '') {
       return data.filter(object => (searchColumns.some(column => (verifyIfObjectMatch(object[column], searchData)))));
     }
-
+    // else return the data unfiltered
     return data;
   }
 

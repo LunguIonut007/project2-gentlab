@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
+import {Dimmer, Loader} from 'semantic-ui-react';
 import Menu from './Menu';
 import ModalController from './ModalController';
 
@@ -27,10 +28,12 @@ class Layout extends React.Component {
   }
 
   render() {
+    const {loading} = this.props;
     return (
       <div>
         <Menu menuItems={this.state.menuItems} pathname={this.props.pathname}/>
         <ModalController/>
+        {!!loading && <Loader active size="massive"/>}
         {this.props.children}
       </div>
     );
@@ -40,11 +43,13 @@ class Layout extends React.Component {
 
 Layout.propTypes = {
   children: PropTypes.node,
-  pathname: PropTypes.string
+  pathname: PropTypes.string,
+  loading: PropTypes.number
 };
 
 const mapStateToProps = state => ({
-  pathname: state.routing.locationBeforeTransitions.pathname
+  pathname: state.routing.locationBeforeTransitions.pathname,
+  loading: state.loader.loading
 });
 
 export default connect(mapStateToProps)(Layout);

@@ -4,7 +4,7 @@ import Actions from '../actions/creators';
 
 export function* getSuppliers(api) {
   // make the call to the api
-  const response = yield call(() => api.getAllSuppliers());
+  const response = yield call(api.getAllSuppliers);
     // check if response is success
   if (response.ok) {
       // dispatch successful receiving children
@@ -41,7 +41,7 @@ export function* addSupplier(api, action) {
     yield put(Actions.requestSuppliers());
   } else {
     // dispatch failure
-    console.log('Error');
+    console.log('Error',response);
   }
 }
 

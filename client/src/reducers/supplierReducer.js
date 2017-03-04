@@ -5,15 +5,11 @@ export const INITIAL_STATE = { fetching: false, list: [] };
 
 const request = state => Object.assign({}, state, { fetching: true, saving: false });
 
-const receive = (state, { suppliers }) =>
-   Object.assign({}, state, {
-     fetching: false,
-     list: suppliers
-   });
+const receive = (state, { suppliers }) => Object.assign({}, state, { fetching: false, list: suppliers });
 
-const saveRequest = (state) => Object.assign({}, state, {saving: true});
+const saveRequest = state => Object.assign({}, state, {saving: true});
 
-const saveReceive = (state) => Object.assign({}, state, {saving: false});
+const saveReceive = state => Object.assign({}, state, {saving: false});
 
 const ACTION_HANDLERS = {
   [Types.SUPPLIERS_REQUEST]: request,

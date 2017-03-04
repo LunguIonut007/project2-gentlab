@@ -1,17 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import DeleteModal from './../../../components/modals/DeleteModal';
+import ConfirmModal from './../../../components/modals/ConfirmModal';
 import Actions from './../../../actions/creators';
+
+// Modal which apears when a user tries to delete a supplier
 
 class SupplierDeleteModal extends Component {
 
   deleteSupplier = () => {
-    this.props.deleteSupplier(this.props.id);
+    const {id, deleteSupplier} = this.props;
+    deleteSupplier(id);
   };
 
   render() {
     return (
-      <DeleteModal header="Delete supplier" deleteFunc={this.deleteSupplier}/>
+      <ConfirmModal header="Delete supplier" confirmButtonName="Delete" confirmFunc={this.deleteSupplier}/>
     );
   }
 }

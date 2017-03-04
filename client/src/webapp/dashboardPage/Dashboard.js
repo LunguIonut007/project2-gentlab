@@ -16,6 +16,7 @@ class Dashboard extends React.Component {
   }
   render() {
     const { last5Suppliers, last5Products } = this.props;
+    // transform server data to client table friendly data
     const configSuppliers = last5Suppliers.map((supplier, index) => new TableDashboardSupplier(index + 1, supplier));
     const configProducts = last5Products.map((product, index) => new TableDashboardProduct(index + 1, product));
 

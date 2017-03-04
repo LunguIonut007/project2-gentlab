@@ -13,6 +13,7 @@ class ProductModalComponent extends React.Component {
   componentWillMount() {
     const {type, initialProductData, initialize, suppliers, reset} = this.props;
 
+    // the suppliers length is 0 when the first page opened is the product page
     if (suppliers.length === 0) {
       this.props.requestSuppliers();
     }
@@ -22,7 +23,12 @@ class ProductModalComponent extends React.Component {
     this.state = {header, confirmButtonText };
 
     if (initialProductData != null) {
-      const productData = {name: initialProductData.name, description: initialProductData.description, supplier: initialProductData.supplierLightDto.name, quantity: initialProductData.quantity };
+      const productData = {
+        name: initialProductData.name,
+        description: initialProductData.description,
+        supplier: initialProductData.supplierLightDto.name,
+        quantity: initialProductData.quantity
+      };
       initialize(productData);
       reset(); // reset is here for forcing a new validation
     }
@@ -34,19 +40,21 @@ class ProductModalComponent extends React.Component {
     const data = this.convertData(formData);
     if (type === 'add') {
       requestAddProduct(data);
-      // modal closing takes place in the SupplierSaga is the server response is ok
+      // modal closing takes place in the SupplierSaga if the server response is ok
     } else {
       requestEditProduct(id, data);
-      // modal closing takes place in the SupplierSaga is the server response is ok
+      // modal closing takes place in the SupplierSaga if the server response is ok
     }
   };
 
+ // sets in the options variable the possible values for the supplier dropdown menu (add/edit)
   getOptionsFromObject() {
     const { suppliers } = this.props;
     const options = suppliers.map(supplier => ({key: supplier.id, text: supplier.name, value: supplier.name }));
     return options;
   }
 
+ // converts data from client side friendly objects to server objects (see postman get for exact variables name)
   convertData(formData) {
     const {name, description, quantity} = formData;
     const supplier = this.props.suppliers.filter(mapSupplier => (formData.supplier === mapSupplier.name))[0];
@@ -55,24 +63,26 @@ class ProductModalComponent extends React.Component {
   }
 
   render() {
-
     const options = this.getOptionsFromObject();
     const { handleSubmit, closeModal, pristine, submitting } = this.props;
     return (
       <Modal open={this.props.isOpen} onClose={closeModal}>
         <Modal.Header>{this.state.header}</Modal.Header>
         <Modal.Content>
+
           <Form onSubmit={handleSubmit(this.onSubmit)}>
             <Field name="name" label="Name" component={InputFormField} disabled={submitting} type="text"/>
             <Field name="description" label="Description" component={InputFormField} disabled={submitting} type="text"/>
             <Field name="quantity" label="Quantity" component={InputFormField} disabled={submitting} type="number"/>
             <Field name="supplier" label="Supplier" component={DropDownField} disabled={submitting} options={options}/>
-
           </Form>
+
         </Modal.Content>
         <Modal.Actions>
-          <Button type="submit" onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}> {this.state.confirmButtonText} </Button>
-          <Button onClick={this.props.closeModal} > Cancel </Button>
+          <Button type="submit" onClick={handleSubmit(this.onSubmit)} disabled={pristine || submitting}>
+            {this.state.confirmButtonText}
+          </Button>
+          <Button onClick={this.props.closeModal} disabled={submitting} > Cancel </Button>
         </Modal.Actions>
       </Modal>
     );

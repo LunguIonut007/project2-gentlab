@@ -8,13 +8,14 @@ import './../../styles/main.css';
 export default class DropDownField extends React.Component {
 
   render() {
-    const { input, options, meta: {touched, error}} = this.props;
+    const { input, options, disabled, meta: {touched, error}} = this.props;
     return (
       <div>
         <Dropdown
           fluid selection
           placeholder="Select a supplier"
           options={options}
+          disabled={disabled}
           value={input.value}
           onChange={(param, data) => this.props.input.onChange(data.value)}/>
         {/* error handling -- redux form package */}
@@ -27,5 +28,6 @@ export default class DropDownField extends React.Component {
 DropDownField.propTypes = {
   input: PropTypes.object,
   meta: PropTypes.object,
+  disabled: PropTypes.bool,
   options: PropTypes.arrayOf(PropTypes.object)
 };

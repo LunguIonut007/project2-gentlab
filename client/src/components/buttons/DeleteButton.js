@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {Button} from 'semantic-ui-react';
 
+// A button component which takes an id and a function and on click calls the function with the id as parameter
 
 export default class DeleteButton extends React.Component {
   onDeleteClick = () => {

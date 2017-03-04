@@ -3,15 +3,11 @@ import { Menu } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
 
 export default class MenuComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.handleItemClick = this.handleItemClick.bind(this);
 
-  }
-
-  handleItemClick(e, { name }) {
+  handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name });
 
+   // find the menuItem with the given name and push it in browserHistory so the client is sent to the new page
     const item = this.props.menuItems.filter(menuItem => name === menuItem.name)[0];
 
     browserHistory.push(item.pathname);

@@ -27,4 +27,9 @@ public interface SupplierRepository extends PagingAndSortingRepository<Supplier,
     //verify if the name already exists in the database
     @Query("select count(s)>0 from Supplier s where s.name= :name")
     boolean nameExists(@Param("name") String name);
+
+    @Query("select count(s)>0 from Supplier s where s.name= :name and s.id <> :ownerId")
+    boolean nameExistsExceptOwner(@Param("name") String name, @Param("ownerId") int ownerId);
+
+
 }

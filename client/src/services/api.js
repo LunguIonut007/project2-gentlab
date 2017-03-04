@@ -2,6 +2,7 @@
 import apisauce from 'apisauce';
 
 // our "constructor"
+// http://localhost:8080/api is the address of the spring server
 const create = (baseURL = 'http://localhost:8080/api') => {
   // ------
   // STEP 1
@@ -22,6 +23,8 @@ const create = (baseURL = 'http://localhost:8080/api') => {
   const getAllSuppliers = () => api.get('/suppliers');
 
   const getAllProducts = () => api.get('/products');
+
+ // if the number of last products/suppliers need change, modify the query parameter, "number"
 
   const getLast5Suppliers = () => api.get('/suppliers/getLastSuppliers?number=5');
 

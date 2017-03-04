@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ConfirmModal from './../../../components/modals/ConfirmModal';
 import Actions from './../../../actions/creators';
 
-// Modal which apears when a user tries to delete a product
+// Modal which appears when a user tries to delete a product
 
 class ProductDeleteModal extends Component {
 

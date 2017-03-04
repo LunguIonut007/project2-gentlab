@@ -1,4 +1,3 @@
-/* Combine all available reducers to a single root reducer.*/
 
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
@@ -9,6 +8,8 @@ import ProductReducer from './productReducer';
 import ModalReducer from './modalReducer';
 import ProductLast5Reducer from './productLast5Reducer';
 import LoaderReducer from './loadingReducer';
+
+/* Combine all available reducers to a single root reducer.*/
 
 const combined = combineReducers(
   {

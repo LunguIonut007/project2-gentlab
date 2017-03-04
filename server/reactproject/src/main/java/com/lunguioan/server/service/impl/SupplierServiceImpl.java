@@ -54,7 +54,7 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public SupplierDto editSupplier(int supplierId, SupplierDto supplierDto) throws NameException  {
 
-        if(supplierRepository.nameExists(supplierDto.getName())) {
+        if(supplierRepository.nameExistsExceptOwner(supplierDto.getName(), supplierId)) {
             throw new NameException("name");
         }
         else {

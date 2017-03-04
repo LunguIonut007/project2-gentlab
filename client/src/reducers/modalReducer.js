@@ -2,7 +2,7 @@ import { createReducer } from 'reduxsauce';
 
 import Types from './../actions/types';
 
-export const INITIAL_STATE = { isOpen: true, modalType: null, object: null };
+export const INITIAL_STATE = { isOpen: true, modalType: null, id: null, object: null };
 
 const open = (state, {payload}) => Object.assign({}, state, {isOpen: true, ...payload});
 

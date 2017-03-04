@@ -10,7 +10,7 @@ export const INITIAL_STATE = { loading: 0};
 // A global loader (present in Layout) was chosen because we would not want multiple showed at once
 
 // Because multiple request can be sent at the same time we need to show the loading if there's at least
-// one request pending (a true/false aproach would result in the termination of the loading at the first "receive")
+// one request pending (a true/false approach would result in the termination of the loading at the first "receive")
 const request = state => Object.assign({}, state, { loading: state.loading + 1 }); //
 const receive = state => Object.assign({}, state, {loading: state.loading - 1 });
 

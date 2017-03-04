@@ -4,6 +4,8 @@ import { Loader} from 'semantic-ui-react';
 import Menu from './Menu';
 import ModalController from './ModalController';
 
+// The layout is the base component of the app, global component should be put here
+
 class Layout extends React.Component {
 
   constructor(props) {
@@ -35,6 +37,7 @@ class Layout extends React.Component {
         <Menu menuItems={this.state.menuItems} pathname={this.props.pathname}/>
         <ModalController/>
         {!!loading && <Loader active size="massive"/>}
+        {/* The loader is global and active when a request takes place */}
         {this.props.children}
       </div>
     );

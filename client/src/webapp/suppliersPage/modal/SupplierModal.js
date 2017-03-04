@@ -14,24 +14,24 @@ class SupplierModalComponent extends React.Component {
     const confirmButtonText = this.props.type === 'add' ? 'Save' : 'Edit';
     this.state = {header, confirmButtonText };
     initialize(initialSupplierData);
-   // this.props.validate(initialSupplierData);
     reset(); // reset is here for forcing a new validation
   }
 
+  // the client side form data is already as the server data, no conversion needed
   onSubmit = (formData) => {
     const {type, requestAddSupplier, requestEditSupplier, id} = this.props;
     if (type === 'add') {
       requestAddSupplier(formData);
-      // modal closing takes place in the SupplierSaga is the server response is ok
+      // modal closing takes place in the SupplierSaga if the server response is ok
     } else {
       requestEditSupplier(id, formData);
-      // modal closing takes place in the SupplierSaga is the server response is ok
+      // modal closing takes place in the SupplierSaga if the server response is ok
     }
   };
 
   render() {
-
     const { handleSubmit, closeModal, pristine, submitting } = this.props;
+
     return (
       <Modal open={this.props.isOpen} onClose={closeModal}>
         <Modal.Header>{this.state.header}</Modal.Header>
@@ -45,7 +45,7 @@ class SupplierModalComponent extends React.Component {
           <Button
             type="submit" onClick={handleSubmit(this.onSubmit)}
             disabled={pristine || submitting}> {this.state.confirmButtonText} </Button>
-          <Button onClick={this.props.closeModal}> Cancel </Button>
+          <Button onClick={this.props.closeModal} disabled={submitting}> Cancel </Button>
         </Modal.Actions>
       </Modal>
     );

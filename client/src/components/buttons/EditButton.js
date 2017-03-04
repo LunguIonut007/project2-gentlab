@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {Button} from 'semantic-ui-react';
 
+// the same as DeleteButton, kept because of naming conventions
 
 export default class EditButton extends React.Component {
   onEditClick = () => {

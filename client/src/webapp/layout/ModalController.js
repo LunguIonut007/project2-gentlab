@@ -5,6 +5,10 @@ import ProductModal from './../productsPage/modal/ProductModal';
 import SupplierDeleteModal from './../suppliersPage/modal/SupplierDeleteModal';
 import ProductDeleteModal from './../productsPage/modal/ProductDeleteModal';
 
+// The ModalController is a component which takes care of what modal should be displayed on the screen
+// It listens to the state.modal.isOpen boolean and when it's true, render a modal based on the given
+// state.modal.modalType
+
 class ModalController extends React.Component {
 
   getComponent = () => {

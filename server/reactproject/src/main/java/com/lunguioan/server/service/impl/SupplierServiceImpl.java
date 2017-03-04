@@ -1,6 +1,7 @@
 package com.lunguioan.server.service.impl;
 
 import com.lunguioan.server.dto.SupplierDto;
+import com.lunguioan.server.exception.NameException;
 import com.lunguioan.server.model.Supplier;
 import com.lunguioan.server.repository.SupplierRepository;
 import com.lunguioan.server.service.SupplierService;
@@ -43,8 +44,27 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public SupplierDto saveSupplier(Supplier supplier) {
+    public SupplierDto saveSupplier(Supplier supplier) throws NameException {
+        if(supplierRepository.nameExists(supplier.getName())) {
+            throw new NameException("name");
+        }
         return new SupplierDto(supplierRepository.save(supplier));
+    }
+
+    @Override
+    public SupplierDto editSupplier(int supplierId, SupplierDto supplierDto) throws NameException  {
+
+        if(supplierRepository.nameExists(supplierDto.getName())) {
+            throw new NameException("name");
+        }
+        else {
+            Supplier supplier = supplierRepository.findOne(supplierId);
+            supplierDto.resolve(supplier);
+
+            supplierRepository.save(supplier);
+
+            return new SupplierDto(supplier);
+        }
     }
 
     @Override
@@ -62,15 +82,5 @@ public class SupplierServiceImpl implements SupplierService {
         List<Supplier> suppliers = supplierRepository.getLastNSuppliers(new PageRequest(0,numberOfSuppliers));
 
         return suppliers.stream().map(SupplierDto::new).collect(Collectors.toList());
-    }
-
-    @Override
-    public SupplierDto editSupplier(int supplierId, SupplierDto supplierDto) {
-        Supplier supplier = supplierRepository.findOne(supplierId);
-        supplierDto.resolve(supplier);
-
-        supplierRepository.save(supplier);
-
-        return new SupplierDto(supplier);
     }
 }

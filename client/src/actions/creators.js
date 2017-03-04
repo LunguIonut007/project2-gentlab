@@ -36,7 +36,7 @@ const receiveEditProduct = product => ({type: Types.PRODUCT_EDIT_RECEIVE, produc
 
 // A modal, in the state the app is now, needs three objects: the modalType which tells the ModalController which modal
 // to render, the (database) id of the object that we are performing edit/delete and the object we send to the server to
-// be editted/added
+// be edited/added
 
 const openModal = (modalType, idOfObject, object) => ({type: Types.MODAL_OPEN, payload: {modalType, idOfObject, object}});
 const closeModal = () => ({type: Types.MODAL_CLOSE});

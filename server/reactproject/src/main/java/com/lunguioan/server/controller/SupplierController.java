@@ -1,6 +1,7 @@
 package com.lunguioan.server.controller;
 
 import com.lunguioan.server.dto.SupplierDto;
+import com.lunguioan.server.exception.NameException;
 import com.lunguioan.server.model.Supplier;
 import com.lunguioan.server.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,12 @@ public class SupplierController {
     }
 
     @PutMapping("/{supplierId}")
-    public SupplierDto editSupplier(@PathVariable("supplierId")int supplierId, @RequestBody @Valid SupplierDto supplierDto) {
+    public SupplierDto editSupplier(@PathVariable("supplierId")int supplierId, @RequestBody @Valid SupplierDto supplierDto)  throws NameException {
         return supplierService.editSupplier(supplierId,supplierDto);
     }
 
     @PostMapping("/add")
-    public void createSupplier(@RequestBody @Valid SupplierDto supplierDto) {
+    public void createSupplier(@RequestBody @Valid SupplierDto supplierDto) throws  NameException {
         supplierService.saveSupplier(supplierDto.resolve(new Supplier()));
     }
 

@@ -4,6 +4,7 @@ import com.lunguioan.server.model.Supplier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,4 +23,8 @@ public interface SupplierRepository extends PagingAndSortingRepository<Supplier,
     //orders the table descending and sends the top n values
     @Query("from Supplier supplier order by supplier.id desc")
     List<Supplier> getLastNSuppliers(Pageable pageable);
+
+    //verify if the name already exists in the database
+    @Query("select count(s)>0 from Supplier s where s.name= :name")
+    boolean nameExists(@Param("name") String name);
 }

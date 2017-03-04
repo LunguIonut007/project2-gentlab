@@ -29,7 +29,7 @@ class Layout extends React.Component {
 
   render() {
     const {loading} = this.props;
-    console.log(loading);
+
     return (
       <div>
         <Menu menuItems={this.state.menuItems} pathname={this.props.pathname}/>

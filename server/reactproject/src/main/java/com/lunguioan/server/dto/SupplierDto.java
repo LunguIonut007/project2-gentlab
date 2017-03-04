@@ -18,6 +18,7 @@ public class SupplierDto {
 
     @NotEmpty
     private String name;
+    @NotEmpty
     private String address;
 
     public SupplierDto(Supplier supplier) {

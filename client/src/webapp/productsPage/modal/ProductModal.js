@@ -30,14 +30,14 @@ class ProductModalComponent extends React.Component {
   }
 
   onSubmit = (formData) => {
-    const {type, requestAddProduct, requestEditProduct, closeModal, id} = this.props;
+    const {type, requestAddProduct, requestEditProduct, id} = this.props;
     const data = this.convertData(formData);
     if (type === 'add') {
       requestAddProduct(data);
-      closeModal();
+      // modal closing takes place in the SupplierSaga is the server response is ok
     } else {
       requestEditProduct(id, data);
-      closeModal();
+      // modal closing takes place in the SupplierSaga is the server response is ok
     }
   };
 

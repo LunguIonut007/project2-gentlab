@@ -19,17 +19,18 @@ class SupplierModalComponent extends React.Component {
   }
 
   onSubmit = (formData) => {
-    const {type, requestAddSupplier, requestEditSupplier, closeModal, id} = this.props;
+    const {type, requestAddSupplier, requestEditSupplier, id} = this.props;
     if (type === 'add') {
       requestAddSupplier(formData);
-      closeModal();
+      // modal closing takes place in the SupplierSaga is the server response is ok
     } else {
       requestEditSupplier(id, formData);
-      closeModal();
+      // modal closing takes place in the SupplierSaga is the server response is ok
     }
   };
 
   render() {
+
     const { handleSubmit, closeModal, pristine, submitting } = this.props;
     return (
       <Modal open={this.props.isOpen} onClose={closeModal}>
@@ -88,7 +89,8 @@ function validate(values) {
   const errors = {};
 
   if (name == null || name.trim() === '') errors.name = 'Name can\'t be empty!';
-  if (address == null || address.trim === '') errors.address = 'Address can\'t be empty!';
+  if (address == null || address.trim() === '') errors.address = 'Address can\'t be empty!';
+
 
   return errors;
 }

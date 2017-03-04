@@ -9,7 +9,7 @@ export function* getProducts(api) {
     yield put(Actions.receiveProducts(response.data));
 
   } else {
-    console.log('Error');
+    yield put(Actions.receiveProducts({}));
   }
 }
 
@@ -20,7 +20,7 @@ export function* getLast5Products(api) {
   if (response.ok) {
     yield put(Actions.receiveLast5Products(response.data));
   } else {
-    console.log('Error');
+    yield put(Actions.receiveLast5Products({}));
   }
 }
 
@@ -31,7 +31,10 @@ export function* addProduct(api, action) {
 
   if (response.ok) {
     yield put(Actions.receiveAddProduct());
+    yield put(Actions.closeModal());
     yield put(Actions.requestProducts());
+  } else {
+    yield put(Actions.receiveAddProduct());
   }
 }
 
@@ -43,7 +46,10 @@ export function* editProduct(api, action) {
   if (response.ok) {
 
     yield put(Actions.receiveEditProduct());
+    yield put(Actions.closeModal());
     yield put(Actions.requestProducts());
+  } else {
+    yield put(Actions.receiveEditProduct());
   }
 }
 
@@ -51,9 +57,8 @@ export function* deleteProduct(api, action) {
   const {productId} = action;
 
   const response = yield call(api.deleteProduct, productId);
-
+  yield put(Actions.receiveDeleteProduct());
   if (response.ok) {
-    yield put(Actions.receiveDeleteProduct());
     yield put(Actions.requestProducts());
   }
 }
